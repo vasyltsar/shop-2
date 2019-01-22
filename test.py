@@ -2,7 +2,7 @@ import json
 
 class Database:
     def __init__(self, path_file):
-        self.path_file=path_file
+        self.path_file = path_file
 
     def write(self, data):
         with open(self.path_file, 'w') as f:
@@ -15,21 +15,21 @@ class Database:
 
 class AddUser:
     def __init__(self, firs_name, last_name, phone_number, city):
-        self.firs_name=firs_name
-        self.last_name=last_name
-        self.phone_number=phone_number
-        self.city=city
+        self.firs_name = firs_name
+        self.last_name = last_name
+        self.phone_number = phone_number
+        self.city = city
         self.db = Database(path_file='file.json')
 
     def lisl_user(self):
         return {'users':[]}
 
     def create_user(self):
-        return {"first name" :self.firs_name,
-                "last name" :self.last_name,
-                "phone_number" :self.phone_number,
-                "city":self.city,
-                "product" :[]}
+        return {"first name": self.firs_name,
+                "last name": self.last_name,
+                "phone_number": self.phone_number,
+                "city": self.city,
+                "product": []}
 
     def save_user(self):
         data=self.db.read()
@@ -76,24 +76,21 @@ class AddProduct:
                         total.append(price['total'])
                         total_cost.append(price['price'])
                         total_price = sum([x * y for x, y in zip(total_cost, total)])
-                        print(total_price)
                         if total_price >= 500000:
-                            print('-10')
-                            discunt=int(input('price'))
-                            discunt=discunt-discunt*0.1
+                            print('congratulations you have discount -10%')
+                            discunt = int(input('price'))
+                            discunt -= discunt*0.1
                             products.append({
                                 'type': input('type'),
                                 'price': discunt,
                                 'total': int(input('total'))
                             })
                             break
-
-
                 self.db.write(data)
-
-
-
-
+                break
+        else:
+            print(phone, 'not in database, first you have to create user')
+            exit(1)
 
 add_product=AddProduct()
 add_product.add_product()
@@ -110,34 +107,3 @@ add_product.add_product()
 #                city=city)
 #
 #user.save_user()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
