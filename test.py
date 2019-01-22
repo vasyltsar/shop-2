@@ -25,11 +25,11 @@ class AddUser:
         return {'users':[]}
 
     def create_user(self):
-        return {"first name":self.firs_name,
-                "last name":self.last_name,
-                "phone number":self.phone_number,
+        return {"first name" :self.firs_name,
+                "last name" :self.last_name,
+                "phone_number" :self.phone_number,
                 "city":self.city,
-                "product":[]}
+                "product" :[]}
 
     def save_user(self):
         data=self.db.read()
@@ -44,35 +44,56 @@ class AddProduct:
 
     def add_product(self):
         data = self.db.read()
-        users=data['users']
-        if data['users'] == []:
+        users = data['users']
+        if not users:
             print('sorry no user in database')
             exit(1)
-        phone=int(input('number'))
-        phone_book=[]
-        total=[]
-        total_cost=[]
-        for user in users:
-            phone_book.append(user['phone number'])
-            if phone in phone_book:
-                for price in user['product']:
-                    total.append(price['total'])
-                    total_cost.append(price['price'])
-                total_price=[x * y for x, y in zip(total_cost, total)]
-                print(sum(total_price))
-                if sum(total_price) <= 100000:
-                    discount = int(input('price'))
-                else:
-                    print('you have -10proc')
-                    discount = int(input('price'))
-                    discount = discount - discount * 0.1
-                user['product'].append({'type':input('type'),
-                          'price':discount,
-                          'total':int(input('total'))})
-                self.db.write(data)
+        tries = 4
+        while True:
+            try:
+                phone = int(input("Enter number: "))
                 break
-        else:
-            print('no user phone number', phone, 'first you have to create user')
+            except ValueError:
+                if tries == 0:
+                    print("you don't have any try!")
+                    exit(1)
+                print("not a number!")
+                tries -= 1
+                continue
+        total = []
+        total_cost = []
+        for user in users:
+            products = user['product']
+            if phone == user['phone_number']:
+                if not products:
+                    products.append({
+                        'type': input('type'),
+                        'price': int(input('price')),
+                        'total': int(input('total'))
+                    })
+                else:
+                    for price in products:
+                        total.append(price['total'])
+                        total_cost.append(price['price'])
+                        total_price = sum([x * y for x, y in zip(total_cost, total)])
+                        print(total_price)
+                        if total_price >= 500000:
+                            print('-10')
+                            discunt=int(input('price'))
+                            discunt=discunt-discunt*0.1
+                            products.append({
+                                'type': input('type'),
+                                'price': discunt,
+                                'total': int(input('total'))
+                            })
+                            break
+
+
+                self.db.write(data)
+
+
+
+
 
 add_product=AddProduct()
 add_product.add_product()
@@ -89,7 +110,6 @@ add_product.add_product()
 #                city=city)
 #
 #user.save_user()
-
 
 
 
