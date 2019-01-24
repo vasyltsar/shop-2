@@ -28,5 +28,5 @@ class User:
 user=User()
 
 user.getall()
-user.add_user('vasyl', 'tsar', '0637274940', 'lviv')
-user.getall()
+#user.add_user('vasyl', 'tsar', '0637274940', 'lviv')
+#user.getall()

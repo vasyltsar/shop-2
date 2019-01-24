@@ -20,7 +20,7 @@ class Product:
 product=Product()
 
 product.getall()
-product.add_product('tv', 10000, 1, 1)
-product.getall()
+#product.add_product('tv', 10000, 1, 1)
+#product.getall()
 
 
