@@ -1,4 +1,4 @@
-from test.database import Database
+from shop_2.database import Database
 
 db = Database()
 
