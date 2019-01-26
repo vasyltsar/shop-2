@@ -38,6 +38,6 @@ class Discount:
 
 
 discount = Discount()
-print(discount.getall())
+
 
 

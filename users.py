@@ -28,7 +28,5 @@ class User:
 user=User()
 
 user.getall()
-#user.add_user('petro', 'petrov', '063727492', 'odesa')
-#user.getall()
-#user.user_exists('0637274940')
+
 

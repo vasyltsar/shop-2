@@ -26,9 +26,6 @@ class Product:
 product = Product()
 
 product.getall()
-#product.add_product('tv', 10000, 1, 3)
-#product.getall()
-
 
 
 
