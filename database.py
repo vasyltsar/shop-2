@@ -1,5 +1,5 @@
 import sqlite3
-from .settings import db_name
+from shop_2.settings import db_name
 
 
 class Database:

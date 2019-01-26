@@ -1,4 +1,4 @@
-from test.database import Database
+from shop_2.database import Database
 
 db = Database()
 
@@ -17,13 +17,12 @@ queries = ["""CREATE TABLE IF NOT EXISTS users (
                      product_price real,
                      product_total integer,
                      user_id integer NOT NULL 
-
+                     
                     );""",
            """CREATE TABLE IF NOT EXISTS discounts (
                      id integer primary key AUTOINCREMENT,
                      discount real,
                      user_id integer NOT NULL
-
                     );"""]
 for query in queries:
     db.execute(query)
