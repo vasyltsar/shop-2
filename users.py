@@ -1,13 +1,14 @@
-from shop_2.database import Database
+from test.database import Database
 
 class User:
     def __init__(self):
         self.db = Database()
 
-    def getall(self):
+    def getall_users(self):
         query = "SELECT * FROM users"
         users = self.db.fetchall(query)
         print(users)
+
 
     def add_user(self, first_name, last_name, phone_number, city):
         if self.user_exists(phone_number):
@@ -27,6 +28,7 @@ class User:
 
 user=User()
 
-user.getall()
+#user.add_user('petro', 'petrov', '0637274942', 'odesa')
 
+user.getall_users()
 
