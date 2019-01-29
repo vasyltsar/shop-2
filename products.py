@@ -16,13 +16,13 @@ class Product:
 
 
     def add_product(self, product_type, product_price, product_total, user_id):
-        if self.dis.discount_exist(user_id) != None:
-            x = 0.9
+        if self.dis.discount_exist(user_id) == user_id:
+            discount = 0.9
         else:
-            x = 1
-        print(self.dis.save_discount(user_id))
+            discount = 1
+        self.dis.save_discount(user_id)
         query = f"""INSERT INTO products(`product_type`, `product_price`, `product_total`, `user_id`)
-                          VALUES ('{product_type}', '{product_price * x}', '{product_total}', '{user_id}')
+                          VALUES ('{product_type}', '{product_price * discount}', '{product_total}', '{user_id}')
                                       """
         self.db.insert(query)
 
@@ -33,6 +33,6 @@ class Product:
 product = Product()
 
 
-product.add_product('phone', 2500, 10, 1)
+product.add_product('glass', 250, 1, 3)
 
 product.getall_products()

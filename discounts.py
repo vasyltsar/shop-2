@@ -27,7 +27,7 @@ class Discount:
         if self.discount_exist(user_id):
             print(f'User with user id {user_id} have discount.')
         else:
-            if self.discount(user_id) != None:
+            if self.discount(user_id) == 0.9:
                 query = f"""INSERT INTO discounts(`discount`, `user_id`)
                             VALUES ('{self.discount(user_id)}', '{user_id}')
                          """
@@ -36,9 +36,10 @@ class Discount:
 
     def discount_exist(self, user_id):
         query = f"SELECT user_id FROM discounts where user_id = '{user_id}'"
-        products = self.db.fetchone(query)
-        print(products)
-        return products
+        discounts = self.db.fetchone(query)
+        return discounts if not discounts else discounts[0]
+
 
 discount = Discount()
 
+discount.getall_discounts()
