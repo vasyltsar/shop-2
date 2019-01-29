@@ -43,3 +43,4 @@ class Discount:
 discount = Discount()
 
 discount.getall_discounts()
+
