@@ -1,9 +1,10 @@
-from shop_2.database import Database
+from test.database import Database
 
 db = Database()
 
 queries = ["""CREATE TABLE IF NOT EXISTS users (
                      id integer primary key AUTOINCREMENT,
+                     type_of_purchase text,
                      first_name text,
                      last_name text,
                      phone_number text UNIQUE,
@@ -17,7 +18,7 @@ queries = ["""CREATE TABLE IF NOT EXISTS users (
                      product_price real,
                      product_total integer,
                      user_id integer NOT NULL 
-                     
+
                     );""",
            """CREATE TABLE IF NOT EXISTS discounts (
                      id integer primary key AUTOINCREMENT,
