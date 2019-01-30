@@ -24,7 +24,10 @@ class Product:
                 discount = 0.9
             else:
                 discount = 1
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12e36caa94143668929a41f50de00c122e4938f5
         else:
             discount = 0.8
         query = f"""INSERT INTO products(`product_type`, `product_price`, `product_total`, `user_id`)
