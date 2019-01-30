@@ -1,4 +1,4 @@
-from test.database import Database
+from shop_2.database import Database
 
 class User:
     def __init__(self):
@@ -23,7 +23,6 @@ class User:
     def user_exists(self, phone_number):
         query = f"SELECT id FROM users where phone_number = '{phone_number}'"
         user = self.db.fetchone(query)
-        print(user)
         return user if not user else user[0]
 
     def type_user_purchase(self, id):
@@ -36,6 +35,5 @@ user=User()
 #  wholesale_or_retail
 #user.add_user('retail', 'petro', 'petrov', '0637274942', 'odesa')
 
-user.getall_users()
+#user.getall_users()
 
-print(user.type_user_purchase(3))

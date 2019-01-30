@@ -1,4 +1,4 @@
-from test.database import Database
+from shop_2.database import Database
 
 class Discount:
     def __init__(self):
@@ -24,23 +24,22 @@ class Discount:
 
 
     def save_discount(self, user_id):
-        if self.discount_exist(user_id):
-            print(f'User with user id {user_id} have discount.')
-        else:
-            if self.discount(user_id) == 0.9:
-                query = f"""INSERT INTO discounts(`discount`, `user_id`)
-                            VALUES ('{self.discount(user_id)}', '{user_id}')
-                         """
-                self.db.insert(query)
+        discount = self.discount(user_id)
+        if discount is not None:
+            query = f"""INSERT INTO discounts(`discount`, `user_id`)
+                          VALUES ('{discount}', '{user_id}')
+                       """
+            self.db.insert(query)
+        return discount
 
 
     def discount_exist(self, user_id):
-        query = f"SELECT user_id FROM discounts where user_id = '{user_id}'"
+        query = f"SELECT discount FROM discounts where user_id = '{user_id}'"
         discounts = self.db.fetchone(query)
         return discounts if not discounts else discounts[0]
 
 
 discount = Discount()
 
-discount.getall_discounts()
+#discount.getall_discounts()
 

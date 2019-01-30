@@ -42,3 +42,8 @@ class Database:
         self.connection.commit()
         self.close()
 
+    def delete(self, query):
+        self.execute(query)
+        self.connection.commit()
+        self.close()
+
