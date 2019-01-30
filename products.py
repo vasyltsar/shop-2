@@ -18,12 +18,12 @@ class Product:
 
 
     def add_product(self, product_type, product_price, product_total, user_id):
+        self.dis.save_discount(user_id)
         if self.user.type_user_purchase(user_id) == 'retail':
             if self.dis.discount_exist(user_id) == user_id:
                 discount = 0.9
             else:
                 discount = 1
-            self.dis.save_discount(user_id)
         else:
             discount = 0.8
         query = f"""INSERT INTO products(`product_type`, `product_price`, `product_total`, `user_id`)
